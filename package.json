@@ -2,10 +2,11 @@
   "name": "wix-preview-tester",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.mjs",
   "bin": {
-    "refreshTestsConfigs": "./refreshTestsConfigs.js"
+    "refreshTestsConfigs": "refreshTestsConfigs.mjs"
   },
+  "types": "index.d.ts",
   "dependencies": {
     "puppeteer": "^21.5.1"
   },

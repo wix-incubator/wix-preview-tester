@@ -1,13 +1,25 @@
 #!/usr/bin/env node
 
-const { exec } = require('child_process');
-const { getQueryParamsFromShortUrl } = require('./getQueryParamsFromShortURL');
-const { setTestsConfig } = require('.');
+import { exec } from 'child_process';
+import puppeteer from 'puppeteer';
+import url from 'url';
+import { setTestsConfig } from './index.mjs';
+
+const getQueryParamsFromShortUrl = async (shortUrl) => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto(shortUrl);
+  await page.waitForSelector('body');
+  const fullUrl = page.url();
+  const parsedUrl = url.parse(fullUrl, true);
+  const queryParams = parsedUrl.query;
+  await browser.close();
+  return queryParams;
+};
 
 (async function refreshTestsConfigs() {
-
+  console.log('????');
   const WixPreviewProcess = exec('wix preview --source local');
-  // @ts-expect-error
   WixPreviewProcess.stdin.setEncoding('utf8');
 
   return new Promise((resolve, reject) => {
