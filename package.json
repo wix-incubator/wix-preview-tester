@@ -2,9 +2,9 @@
   "name": "wix-preview-tester",
   "version": "1.0.0",
   "description": "",
-  "main": "index.mjs",
+  "main": "index.js",
   "bin": {
-    "refreshTestsConfigs": "refreshTestsConfigs.mjs"
+    "refreshTestsConfigs": "refreshTestsConfigs.js"
   },
   "types": "index.d.ts",
   "dependencies": {

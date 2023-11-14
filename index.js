@@ -1,12 +1,8 @@
-import path from 'path';
-import fs from 'fs';
-import { exec } from 'child_process';
-import puppeteer from 'puppeteer';
-import url from 'url';
-
-
-const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const path = require('path');
+const fs = require('fs');
+const { exec } = require('child_process');
+const puppeteer = require('puppeteer');
+const url = require('url');
 
 const configFileName = 'wix-preview-tester.config.json';
 // TODO これがおかしい 実行したプロジェクトのルートになるようにする
@@ -86,7 +82,7 @@ const refreshTestsConfigs = async () => {
   });
 }
 
-export {
+module.exports = {
   refreshTestsConfigs,
   setTestsConfig,
   getTestsConfig,

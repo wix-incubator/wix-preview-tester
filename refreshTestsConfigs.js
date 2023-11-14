@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { refreshTestsConfigs } from './index.mjs';
+const { refreshTestsConfigs } = require('./index.js');
 
 refreshTestsConfigs().catch((error) => {
   console.error('Failed to refreshTestsConfigs with error: ', error);
