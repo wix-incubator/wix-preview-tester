@@ -4,9 +4,9 @@ const { exec } = require('child_process');
 const puppeteer = require('puppeteer');
 const url = require('url');
 
+const rootDirectory = process.cwd();
 const configFileName = 'wix-preview-tester.config.json';
-// TODO これがおかしい 実行したプロジェクトのルートになるようにする
-const configFilePath = path.join(__dirname, configFileName);
+const configFilePath = path.join(rootDirectory, configFileName);
 
 const getQueryParamsFromShortUrl = async (shortUrl) => {
   const browser = await puppeteer.launch();
@@ -21,6 +21,10 @@ const getQueryParamsFromShortUrl = async (shortUrl) => {
 };
 
 const getTestsConfig = () => {
+  if (!fs.existsSync(configFilePath)) {
+    return { siteRevision: "", branchId: "" };
+  }
+
   const configFile = fs.readFileSync(configFilePath, 'utf8');
   const config = JSON.parse(configFile);
   return config;
@@ -28,7 +32,6 @@ const getTestsConfig = () => {
 
 
 const getConfig = () => {
-  console.log('kiyo: getConfig');
   try {
     const configFile = fs.readFileSync(configFilePath, 'utf8');
     return JSON.parse(configFile);
@@ -40,12 +43,12 @@ const getConfig = () => {
 };
 
 const setTestsConfig = (config) => {
-  console.log('kiyo: setTestsConfig');
   const configs = getConfig();
   const updatedConfigs = {
     ...configs,
     ...config,
   };
+
   return fs.writeFileSync(
     configFilePath,
     JSON.stringify(updatedConfigs, null, 2),
@@ -53,7 +56,6 @@ const setTestsConfig = (config) => {
 };
 
 const refreshTestsConfigs = async () => {
-  console.log('kiyo: refreshTestsConfigs');
   const WixPreviewProcess = exec('wix preview --source local');
   WixPreviewProcess.stdin.setEncoding('utf8');
 
@@ -70,13 +72,11 @@ const refreshTestsConfigs = async () => {
           setTestsConfig(queryParams);
           return resolve(queryParams);
         } catch (error) {
-          console.error('Failed to refreshTestsConfigs with error: ', error);
           return reject('Failed to refreshTestsConfigs with error: ');
         }
       }
     });
     WixPreviewProcess.stderr.on('data', async (data) => {
-      console.error('WixPreviewProcess Failed with error: ', data);
       return reject('WixPreviewProcess Failed with error: ');
     });
   });
