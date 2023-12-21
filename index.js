@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const { exec } = require('child_process');
-const puppeteer = require('puppeteer');
+const axios = require('axios');
 const url = require('url');
 
 const rootDirectory = process.cwd();
@@ -9,15 +9,13 @@ const configFileName = 'wix-preview-tester.config.json';
 const configFilePath = path.join(rootDirectory, configFileName);
 
 const getQueryParamsFromShortUrl = async (shortUrl) => {
-  const browser = await puppeteer.launch({ headless: "new" });
-  const page = await browser.newPage();
-  await page.goto(shortUrl);
-  await page.waitForSelector('body');
-  const fullUrl = page.url();
-  const parsedUrl = url.parse(fullUrl, true);
-  const queryParams = parsedUrl.query;
-  await browser.close();
-  return queryParams;
+  const responseURL = await axios
+    .get(shortUrl)
+    .then((response) => response.request.res.responseUrl)
+    .catch((error) => {
+      console.error('error occurred while getting query params from short url', error);
+    });
+  return url.parse(responseURL, true).query;
 };
 
 const getTestsConfig = () => {
