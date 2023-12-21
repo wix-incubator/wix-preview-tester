@@ -15,6 +15,8 @@ const getQueryParamsFromShortUrl = async (shortUrl) => {
     .catch((error) => {
       console.error('error occurred while getting query params from short url', error);
     });
+
+  console.log('Preview URL: ', responseURL)
   return url.parse(responseURL, true).query;
 };
 
