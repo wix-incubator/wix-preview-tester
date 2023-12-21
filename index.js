@@ -72,12 +72,12 @@ const refreshTestsConfigs = async () => {
           setTestsConfig(queryParams);
           return resolve(queryParams);
         } catch (error) {
-          return reject('Failed to refreshTestsConfigs with error: ');
+          return reject(error);
         }
       }
     });
     WixPreviewProcess.stderr.on('data', async (data) => {
-      return reject('WixPreviewProcess Failed with error: ');
+      return reject(data);
     });
   });
 }
