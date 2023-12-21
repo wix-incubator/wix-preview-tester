@@ -9,7 +9,7 @@ const configFileName = 'wix-preview-tester.config.json';
 const configFilePath = path.join(rootDirectory, configFileName);
 
 const getQueryParamsFromShortUrl = async (shortUrl) => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
   await page.goto(shortUrl);
   await page.waitForSelector('body');
