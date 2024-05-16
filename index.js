@@ -56,31 +56,33 @@ const setTestsConfig = (config) => {
 };
 
 const refreshTestsConfigs = async () => {
-  const WixPreviewProcess = exec('wix preview --source local');
-  WixPreviewProcess.stdin.setEncoding('utf8');
+  const WixPreviewProcess = exec('wix preview --source local', { stdio: 'pipe' });
 
   return new Promise((resolve, reject) => {
     WixPreviewProcess.stdout.on('data', async (data) => {
       const stringData = data.toString();
       if (stringData.includes('Your preview deployment is now available at')) {
-        const shortenedURL = stringData.substring(
-          stringData.indexOf('http'),
-          stringData.length,
-        );
+        const shortenedURL = stringData.substring(stringData.indexOf('http')).trim();
         try {
           const queryParams = await getQueryParamsFromShortUrl(shortenedURL);
           setTestsConfig(queryParams);
-          return resolve(queryParams);
+          resolve(queryParams);
         } catch (error) {
-          return reject(error);
+          reject(error);
         }
       }
     });
-    WixPreviewProcess.stderr.on('data', async (data) => {
-      return reject(data);
+
+    WixPreviewProcess.stderr.on('data', (data) => {
+      reject(data.toString());
+    });
+
+    WixPreviewProcess.on('error', (error) => {
+      reject(error);
     });
   });
-}
+};
+
 
 module.exports = {
   refreshTestsConfigs,
