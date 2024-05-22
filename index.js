@@ -9,15 +9,20 @@ const configFileName = 'wix-preview-tester.config.json';
 const configFilePath = path.join(rootDirectory, configFileName);
 
 const getQueryParamsFromShortUrl = async (shortUrl) => {
-  const responseURL = await axios
-    .get(shortUrl)
-    .then((response) => response.request.res.responseUrl)
-    .catch((error) => {
-      console.error('error occurred while getting query params from short url', error);
-    });
+  try {
+    const response = await axios.get(shortUrl, { timeout: 60000 });
+    const responseURL = response?.request?.res?.responseUrl || response?.request?.responseURL;
 
-  console.log('Preview URL: ', responseURL)
-  return url.parse(responseURL, true).query;
+    if (!responseURL) {
+      throw new Error('Failed to get response URL');
+    }
+
+    console.log('Preview URL: ', responseURL);
+    return url.parse(responseURL, true).query;
+  } catch (error) {
+    console.error('Error occurred while getting query params from short URL:', error.message);
+    throw error;
+  }
 };
 
 const getTestsConfig = () => {
