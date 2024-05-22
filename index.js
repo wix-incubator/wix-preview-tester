@@ -11,7 +11,7 @@ const configFilePath = path.join(rootDirectory, configFileName);
 const getQueryParamsFromShortUrl = async (shortUrl) => {
   const responseURL = await axios
     .get(shortUrl)
-    .then((response) => response.request.res.responseUrl)
+    .then((response) => response.request.responseURL)
     .catch((error) => {
       console.error('error occurred while getting query params from short url', error);
     });
