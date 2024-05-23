@@ -3,22 +3,51 @@ const fs = require('fs');
 const { exec } = require('child_process');
 const axios = require('axios');
 const url = require('url');
+const http = require('http');
+const https = require('https');
 
 const rootDirectory = process.cwd();
 const configFileName = 'wix-preview-tester.config.json';
 const configFilePath = path.join(rootDirectory, configFileName);
 
-const getQueryParamsFromShortUrl = async (shortUrl) => {
+async function getFinalURL(url) {
   try {
-    const response = await axios.get(shortUrl, { timeout: 60000 });
-    const responseURL = response?.request?.res?.responseUrl || response?.request?.responseURL;
+    const instance = axios.create({
+      maxRedirects: 0,
+      validateStatus: (status) => status >= 200 && status < 400,
+    });
 
-    if (!responseURL) {
-      throw new Error('Failed to get response URL');
+    let response = await instance.get(url, {
+      httpAgent: new http.Agent({ keepAlive: true }),
+      httpsAgent: new https.Agent({ keepAlive: true }),
+    });
+
+    while (response.status === 301 || response.status === 302) {
+      url = response.headers.location;
+      response = await instance.get(url, {
+        httpAgent: new http.Agent({ keepAlive: true }),
+        httpsAgent: new https.Agent({ keepAlive: true }),
+      });
     }
 
-    console.log('Preview URL: ', responseURL);
-    return url.parse(responseURL, true).query;
+    const responseURL =
+      response?.request?.res?.responseUrl || response?.request?.responseURL || response.request.protocol + '//' + response.request.host + response.request.path
+
+    return responseURL;
+  } catch (error) {
+    if (error.response) {
+      console.log("Final URL:", error.response.request.res.responseUrl);
+    } else {
+      console.error("Error:", error.message);
+    }
+  }
+}
+
+const getQueryParamsFromShortUrl = async (shortUrl) => {
+  try {
+    const finalURL = await getFinalURL(shortUrl);
+    console.log('Preview URL: ', finalURL);
+    return url.parse(finalURL, true).query;
   } catch (error) {
     console.error('Error occurred while getting query params from short URL:', error.message);
     throw error;
