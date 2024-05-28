@@ -44,6 +44,7 @@ async function getFinalURL(url) {
 }
 
 const getQueryParamsFromShortUrl = async (shortUrl) => {
+  console.log('Getting query params from short URL:', shortUrl);
   try {
     const finalURL = await getFinalURL(shortUrl);
     console.log('Preview URL: ', finalURL);
