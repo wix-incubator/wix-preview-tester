@@ -43,6 +43,10 @@ const getFinalURL = async (initialUrl) => {
   while (retries < maxRetries) {
     try {
       response = await instance.get(currentUrl);
+      if (response.status === 404) {
+        console.error('Error: 404 Not Found');
+        throw new Error('404 Not Found');
+      }
       if (response.status !== 301 && response.status !== 302) break;
       currentUrl = response.headers.location;
       retries++;
