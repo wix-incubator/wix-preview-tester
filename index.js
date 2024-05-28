@@ -6,62 +6,60 @@ const url = require('url');
 const http = require('http');
 const https = require('https');
 
-
 const rootDirectory = process.cwd();
 const configFileName = 'wix-preview-tester.config.json';
 const configFilePath = path.join(rootDirectory, configFileName);
 
-async function getFinalURL(url) {
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-  const maxRetries = 10;
-  const retryDelay = 3000;
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const maxRetries = 10;
+const retryDelay = 3000;
 
-  try {
-    const instance = axios.create({
-      maxRedirects: 0,
-      validateStatus: (status) => status >= 200 && status < 400,
-    });
+const createAxiosInstance = () => {
+  return axios.create({
+    maxRedirects: 0,
+    validateStatus: (status) => status >= 200 && status < 400,
+    httpAgent: new http.Agent({ keepAlive: true }),
+    httpsAgent: new https.Agent({ keepAlive: true }),
+  });
+};
 
+const getFinalURL = async (initialUrl) => {
+  const instance = createAxiosInstance();
 
-    instance.interceptors.request.use(request => {
-      console.log('Starting Request: ', request)
-      return request
-    })
-    
-    instance.interceptors.response.use(response => {
-      console.log('Response: ', response)
-      return response
-    })
+  instance.interceptors.request.use((request) => {
+    console.log('Starting Request: ', request);
+    return request;
+  });
 
-    let response = await instance.get(url, {
-      httpAgent: new http.Agent({ keepAlive: true }),
-      httpsAgent: new https.Agent({ keepAlive: true }),
-    });
+  instance.interceptors.response.use((response) => {
+    console.log('Response: ', response);
+    return response;
+  });
 
-    let retries = 0;
-    while ((response.status === 301 || response.status === 302) && retries < maxRetries) {
+  let response;
+  let retries = 0;
+  let currentUrl = initialUrl;
+
+  while (retries < maxRetries) {
+    try {
+      response = await instance.get(currentUrl);
+      if (response.status !== 301 && response.status !== 302) break;
+      currentUrl = response.headers.location;
       retries++;
-      console.log(`Retry attempt: ${retries}, Current URL: ${url}`);
-      url = response.headers.location;
+      console.log(`Retry attempt: ${retries}, Current URL: ${currentUrl}`);
       await delay(retryDelay);
-      response = await instance.get(url, {
-        httpAgent: new http.Agent({ keepAlive: true }),
-        httpsAgent: new https.Agent({ keepAlive: true }),
-      });
+    } catch (error) {
+      console.error("Error:", error.message);
+      throw error;
     }
-
-    const responseURL =
-      response?.request?.res?.responseUrl || 
-      response?.request?.responseURL || 
-      response.request.protocol + '//' + response.request.host + response.request.path;
-
-    console.log(`Final resolved URL: ${responseURL}`);
-    return responseURL;
-  } catch (error) {
-    console.error("Error:", error.message);
-    throw error;
   }
-}
+
+  const responseURL = response?.request?.res?.responseUrl || response?.request?.responseURL ||
+    `${response.request.protocol}//${response.request.host}${response.request.path}`;
+
+  console.log(`Final resolved URL: ${responseURL}`);
+  return responseURL;
+};
 
 const getQueryParamsFromShortUrl = async (shortUrl) => {
   console.log('Getting query params from short URL:', shortUrl);
