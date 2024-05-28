@@ -11,6 +11,10 @@ const configFileName = 'wix-preview-tester.config.json';
 const configFilePath = path.join(rootDirectory, configFileName);
 
 async function getFinalURL(url) {
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const maxRetries = 10;
+  const retryDelay = 3000;
+
   try {
     const instance = axios.create({
       maxRedirects: 0,
@@ -22,8 +26,12 @@ async function getFinalURL(url) {
       httpsAgent: new https.Agent({ keepAlive: true }),
     });
 
-    while (response.status === 301 || response.status === 302) {
+    let retries = 0;
+    while ((response.status === 301 || response.status === 302) && retries < maxRetries) {
+      retries++;
+      console.log(`Retry attempt: ${retries}`);
       url = response.headers.location;
+      await delay(retryDelay);
       response = await instance.get(url, {
         httpAgent: new http.Agent({ keepAlive: true }),
         httpsAgent: new https.Agent({ keepAlive: true }),
@@ -31,7 +39,9 @@ async function getFinalURL(url) {
     }
 
     const responseURL =
-      response?.request?.res?.responseUrl || response?.request?.responseURL || response.request.protocol + '//' + response.request.host + response.request.path
+      response?.request?.res?.responseUrl || 
+      response?.request?.responseURL || 
+      response.request.protocol + '//' + response.request.host + response.request.path;
 
     return responseURL;
   } catch (error) {
