@@ -49,12 +49,16 @@ const getFinalURL = async (initialUrl) => {
       }
       if (response.status !== 301 && response.status !== 302) break;
       currentUrl = response.headers.location;
-      retries++;
-      console.log(`Retry attempt: ${retries}, Current URL: ${currentUrl}`);
-      await delay(retryDelay);
     } catch (error) {
       console.error("Error:", error.message);
-      throw error;
+      if (retries < maxRetries - 1) {
+        console.log(`Retry attempt: ${retries + 1}, Current URL: ${currentUrl}`);
+        await delay(retryDelay);
+        retries++;
+        continue;
+      } else {
+        throw error;
+      }
     }
   }
 
@@ -64,6 +68,7 @@ const getFinalURL = async (initialUrl) => {
   console.log(`Final resolved URL: ${responseURL}`);
   return responseURL;
 };
+
 
 const getQueryParamsFromShortUrl = async (shortUrl) => {
   console.log('Getting query params from short URL:', shortUrl);
