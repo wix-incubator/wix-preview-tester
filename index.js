@@ -6,6 +6,7 @@ const url = require('url');
 const http = require('http');
 const https = require('https');
 
+
 const rootDirectory = process.cwd();
 const configFileName = 'wix-preview-tester.config.json';
 const configFilePath = path.join(rootDirectory, configFileName);
@@ -21,6 +22,17 @@ async function getFinalURL(url) {
       validateStatus: (status) => status >= 200 && status < 400,
     });
 
+
+    instance.interceptors.request.use(request => {
+      console.log('Starting Request: ', request)
+      return request
+    })
+    
+    instance.interceptors.response.use(response => {
+      console.log('Response: ', response)
+      return response
+    })
+
     let response = await instance.get(url, {
       httpAgent: new http.Agent({ keepAlive: true }),
       httpsAgent: new https.Agent({ keepAlive: true }),
@@ -29,7 +41,7 @@ async function getFinalURL(url) {
     let retries = 0;
     while ((response.status === 301 || response.status === 302) && retries < maxRetries) {
       retries++;
-      console.log(`Retry attempt: ${retries}`);
+      console.log(`Retry attempt: ${retries}, Current URL: ${url}`);
       url = response.headers.location;
       await delay(retryDelay);
       response = await instance.get(url, {
@@ -43,13 +55,11 @@ async function getFinalURL(url) {
       response?.request?.responseURL || 
       response.request.protocol + '//' + response.request.host + response.request.path;
 
+    console.log(`Final resolved URL: ${responseURL}`);
     return responseURL;
   } catch (error) {
-    if (error.response) {
-      console.log("Final URL:", error.response.request.res.responseUrl);
-    } else {
-      console.error("Error:", error.message);
-    }
+    console.error("Error:", error.message);
+    throw error;
   }
 }
 
