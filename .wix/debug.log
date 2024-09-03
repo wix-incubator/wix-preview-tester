@@ -1,0 +1,138 @@
+----- CLI crash report at 2024-09-03T08:02:09.109Z
+Error Trace
+FailedToReadJson: FailedToReadJson
+    at lf (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-fs/src/index.ts:38:11)
+    at g (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/files/velo.config.ts:18:22)
+    at h (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/model.ts:13:18)
+    at s (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:8:26)
+    at w (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:25:3)
+    at o.<anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/preview.ts:23:7)
+    at o.parseAsync (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/node_modules/commander/lib/command.js:1015:5)
+    at <anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli/src/index.ts:59:3)
+caused by: Error
+    at K (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-error/src/cli-error.ts:20:11)
+    at lf (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-fs/src/index.ts:38:11)
+    at g (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/files/velo.config.ts:18:22)
+    at h (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/model.ts:13:18)
+    at s (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:8:26)
+    at w (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:25:3)
+    at o.<anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/preview.ts:23:7)
+    at o.parseAsync (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/node_modules/commander/lib/command.js:1015:5)
+    at <anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli/src/index.ts:59:3)
+Error Info
+{}
+----- CLI crash report at 2024-09-03T08:02:20.983Z
+Error Trace
+FailedToReadJson: FailedToReadJson
+    at lf (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-fs/src/index.ts:38:11)
+    at g (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/files/velo.config.ts:18:22)
+    at h (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/model.ts:13:18)
+    at s (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:8:26)
+    at w (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:25:3)
+    at o.<anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/preview.ts:23:7)
+    at o.parseAsync (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/node_modules/commander/lib/command.js:1015:5)
+    at <anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli/src/index.ts:59:3)
+caused by: Error
+    at K (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-error/src/cli-error.ts:20:11)
+    at lf (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-fs/src/index.ts:38:11)
+    at g (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/files/velo.config.ts:18:22)
+    at h (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/model.ts:13:18)
+    at s (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:8:26)
+    at w (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:25:3)
+    at o.<anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/preview.ts:23:7)
+    at o.parseAsync (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/node_modules/commander/lib/command.js:1015:5)
+    at <anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli/src/index.ts:59:3)
+Error Info
+{}
+----- CLI crash report at 2024-09-03T08:02:36.146Z
+Error Trace
+FailedToReadJson: FailedToReadJson
+    at lf (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-fs/src/index.ts:38:11)
+    at g (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/files/velo.config.ts:18:22)
+    at h (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/model.ts:13:18)
+    at s (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:8:26)
+    at w (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:25:3)
+    at o.<anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/preview.ts:23:7)
+    at o.parseAsync (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/node_modules/commander/lib/command.js:1015:5)
+    at <anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli/src/index.ts:59:3)
+caused by: Error
+    at K (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-error/src/cli-error.ts:20:11)
+    at lf (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-fs/src/index.ts:38:11)
+    at g (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/files/velo.config.ts:18:22)
+    at h (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/model.ts:13:18)
+    at s (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:8:26)
+    at w (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:25:3)
+    at o.<anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/preview.ts:23:7)
+    at o.parseAsync (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/node_modules/commander/lib/command.js:1015:5)
+    at <anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli/src/index.ts:59:3)
+Error Info
+{}
+----- CLI crash report at 2024-09-03T08:02:57.589Z
+Error Trace
+FailedToReadJson: FailedToReadJson
+    at lf (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-fs/src/index.ts:38:11)
+    at g (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/files/velo.config.ts:18:22)
+    at h (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/model.ts:13:18)
+    at s (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:8:26)
+    at w (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:25:3)
+    at o.<anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/preview.ts:23:7)
+    at o.parseAsync (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/node_modules/commander/lib/command.js:1015:5)
+    at <anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli/src/index.ts:59:3)
+caused by: Error
+    at K (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-error/src/cli-error.ts:20:11)
+    at lf (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-fs/src/index.ts:38:11)
+    at g (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/files/velo.config.ts:18:22)
+    at h (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/model.ts:13:18)
+    at s (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:8:26)
+    at w (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:25:3)
+    at o.<anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/preview.ts:23:7)
+    at o.parseAsync (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/node_modules/commander/lib/command.js:1015:5)
+    at <anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli/src/index.ts:59:3)
+Error Info
+{}
+----- CLI crash report at 2024-09-03T08:03:13.313Z
+Error Trace
+FailedToReadJson: FailedToReadJson
+    at lf (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-fs/src/index.ts:38:11)
+    at g (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/files/velo.config.ts:18:22)
+    at h (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/model.ts:13:18)
+    at s (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:8:26)
+    at w (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:25:3)
+    at o.<anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/preview.ts:23:7)
+    at o.parseAsync (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/node_modules/commander/lib/command.js:1015:5)
+    at <anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli/src/index.ts:59:3)
+caused by: Error
+    at K (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-error/src/cli-error.ts:20:11)
+    at lf (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-fs/src/index.ts:38:11)
+    at g (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/files/velo.config.ts:18:22)
+    at h (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/model.ts:13:18)
+    at s (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:8:26)
+    at w (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:25:3)
+    at o.<anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/preview.ts:23:7)
+    at o.parseAsync (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/node_modules/commander/lib/command.js:1015:5)
+    at <anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli/src/index.ts:59:3)
+Error Info
+{}
+----- CLI crash report at 2024-09-03T08:03:18.484Z
+Error Trace
+FailedToReadJson: FailedToReadJson
+    at lf (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-fs/src/index.ts:38:11)
+    at g (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/files/velo.config.ts:18:22)
+    at h (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/model.ts:13:18)
+    at s (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:8:26)
+    at w (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:25:3)
+    at o.<anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/preview.ts:23:7)
+    at o.parseAsync (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/node_modules/commander/lib/command.js:1015:5)
+    at <anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli/src/index.ts:59:3)
+caused by: Error
+    at K (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-error/src/cli-error.ts:20:11)
+    at lf (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-fs/src/index.ts:38:11)
+    at g (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/files/velo.config.ts:18:22)
+    at h (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/model.ts:13:18)
+    at s (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:8:26)
+    at w (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/run-command.ts:25:3)
+    at o.<anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli-site/src/commands/preview.ts:23:7)
+    at o.parseAsync (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/node_modules/commander/lib/command.js:1015:5)
+    at <anonymous> (/Users/kyohei/.nvm/versions/node/v20.10.0/lib/node_modules/@wix/cli/src/index.ts:59:3)
+Error Info
+{}

@@ -14,7 +14,7 @@ const argv = yargs(hideBin(process.argv))
   .help()
   .argv;
 
-refreshTestsConfigs(...argv.ua).catch((error) => {
+refreshTestsConfigs({ ...argv }).catch((error) => {
   console.error('Failed to refreshTestsConfigs with error: ', error);
   process.exit(1);
 });
