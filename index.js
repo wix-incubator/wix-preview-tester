@@ -23,7 +23,7 @@ const createAxiosInstance = () => {
   });
 };
 
-const getFinalURL = async (initialUrl) => {
+const getFinalURL = async (initialUrl, ua) => {
   const instance = createAxiosInstance();
 
   instance.interceptors.request.use((request) => {
@@ -42,7 +42,7 @@ const getFinalURL = async (initialUrl) => {
 
   while (retries < maxRetries) {
     try {
-      response = await instance.get(currentUrl);
+      response = await instance.get(currentUrl, { headers: { 'User-Agent': ua || 'wix-preview-tester' } });
       if (response.status === 404) {
         console.error('Error: 404 Not Found');
         throw new Error('404 Not Found');
@@ -70,10 +70,10 @@ const getFinalURL = async (initialUrl) => {
 };
 
 
-const getQueryParamsFromShortUrl = async (shortUrl) => {
+const getQueryParamsFromShortUrl = async (shortUrl, ua) => {
   console.log('Getting query params from short URL:', shortUrl);
   try {
-    const finalURL = await getFinalURL(shortUrl);
+    const finalURL = await getFinalURL(shortUrl, ua);
     console.log('Preview URL: ', finalURL);
     return url.parse(finalURL, true).query;
   } catch (error) {
@@ -117,7 +117,7 @@ const setTestsConfig = (config) => {
   );
 };
 
-const refreshTestsConfigs = async () => {
+const refreshTestsConfigs = async ({ ua }) => {
   const WixPreviewProcess = exec('wix preview --source local', { stdio: 'pipe' });
 
   return new Promise((resolve, reject) => {
@@ -126,7 +126,7 @@ const refreshTestsConfigs = async () => {
       if (stringData.includes('Your preview deployment is now available at')) {
         const shortenedURL = stringData.substring(stringData.indexOf('http')).trim();
         try {
-          const queryParams = await getQueryParamsFromShortUrl(shortenedURL);
+          const queryParams = await getQueryParamsFromShortUrl(shortenedURL, ua);
           setTestsConfig(queryParams);
           resolve(queryParams);
         } catch (error) {
